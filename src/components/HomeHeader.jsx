@@ -1,4 +1,5 @@
 import { Github, Linkedin, Instagram, FileDown } from "lucide-react"
+import { Link } from 'react-router-dom'
 
 export default function HomeHeader() {
   return (
@@ -6,40 +7,40 @@ export default function HomeHeader() {
       <div className="flex justify-between items-center px-12 py-8">
         {/* Left Navigation */}
         <nav className="flex space-x-6 text-sm font-pathway flex-1 font-medium">
-          <a href="/" className="hover:text-red-400 transition-colors">Home</a>
+          <Link to="/" className="hover:text-red-400 transition-colors">Home</Link>
           
           {/* Projects Dropdown */}
           <div className="relative group">
-            <a href="/projects" className="hover:text-red-400 transition-colors cursor-pointer">
+            <span className="hover:text-red-400 transition-colors cursor-pointer">
               Projects
-            </a>
+            </span>
             
             {/* Dropdown Menu */}
             <div className="absolute top-full left-0 mt-2 w-40 bg-black rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
               <div className="py-2">
-                <a 
-                  href="/projects/lockedin" 
+                <Link 
+                  to="/projects/lockedin" 
                   className="block px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-900/20 transition-colors"
                 >
                   LockedIn
-                </a>
-                <a 
-                  href="/projects/checkit" 
+                </Link>
+                <Link 
+                  to="/projects/checkit" 
                   className="block px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-900/20 transition-colors"
                 >
                   CheckIt
-                </a>
-                <a 
-                  href="/projects/clippit" 
+                </Link>
+                <Link 
+                  to="/projects/clippit" 
                   className="block px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-900/20 transition-colors"
                 >
                   Clippit
-                </a>
+                </Link>
               </div>
             </div>
           </div>
           
-          <a href="/contact" className="hover:text-red-400 transition-colors">Contact</a>
+          <Link to="/contact" className="hover:text-red-400 transition-colors">Contact</Link>
         </nav>
 
         {/* Center Title */}
