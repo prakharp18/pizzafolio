@@ -11,6 +11,7 @@ export default {
         montecarlo: ['"MonteCarlo"', 'cursive'],
         wix: ['"Wix Madefor Display"', 'sans-serif'],
         martian: ['"Martian Mono"', 'monospace'],
+        azeret: ['"Azeret Mono"', 'monospace'],
       },
     },
   },

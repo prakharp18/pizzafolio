@@ -7,7 +7,38 @@ export default function HomeHeader() {
         {/* Left Navigation */}
         <nav className="flex space-x-6 text-sm font-pathway flex-1 font-medium">
           <a href="/" className="hover:text-red-400 transition-colors">Home</a>
-          <a href="/projects" className="hover:text-red-400 transition-colors">Films</a>
+          
+          {/* Projects Dropdown */}
+          <div className="relative group">
+            <a href="/projects" className="hover:text-red-400 transition-colors cursor-pointer">
+              Projects
+            </a>
+            
+            {/* Dropdown Menu */}
+            <div className="absolute top-full left-0 mt-2 w-40 bg-black rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div className="py-2">
+                <a 
+                  href="/projects/lockedin" 
+                  className="block px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-900/20 transition-colors"
+                >
+                  LockedIn
+                </a>
+                <a 
+                  href="/projects/checkit" 
+                  className="block px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-900/20 transition-colors"
+                >
+                  CheckIt
+                </a>
+                <a 
+                  href="/projects/clippit" 
+                  className="block px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-900/20 transition-colors"
+                >
+                  Clippit
+                </a>
+              </div>
+            </div>
+          </div>
+          
           <a href="/contact" className="hover:text-red-400 transition-colors">Contact</a>
         </nav>
 
@@ -19,16 +50,16 @@ export default function HomeHeader() {
 
         {/* Right Icons */}
         <div className="flex space-x-5 items-center justify-end flex-1">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://instagram.com/pizzat25_" target="_blank" rel="noopener noreferrer">
             <Instagram className="w-5 h-5 hover:text-red-400 transition-colors" />
           </a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/prakharp18" target="_blank" rel="noopener noreferrer">
             <Github className="w-5 h-5 hover:text-red-400 transition-colors" />
           </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://linkedin.com/in/prakhar-porwal-93430b229/" target="_blank" rel="noopener noreferrer">
             <Linkedin className="w-5 h-5 hover:text-red-400 transition-colors" />
           </a>
-          <a href="/resume.pdf" download title="Download Resume">
+          <a href="/Prakhar_Resume (2).pdf" download title="Download Resume">
             <FileDown className="w-5 h-5 hover:text-red-400 transition-colors" />
           </a>
         </div>

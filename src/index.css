@@ -7,7 +7,7 @@
 @import url('https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap');
 @import url('https://fonts.cdnfonts.com/css/wix-madefor-display');
 @import url('https://fonts.cdnfonts.com/css/martian-mono');
-
+@import url('https://fonts.cdnfonts.com/css/azeret-mono');
                 
 
 /* CSS classes come after all imports */
@@ -25,4 +25,8 @@
 
 .font-martian {
   font-family: 'Martian Mono', monospace;
+}
+
+.font-azeret {
+  font-family: 'Azeret Mono', monospace;
 }
