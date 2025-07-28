@@ -1,0 +1,28 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* All @import statements must come first */
+@import url('https://fonts.cdnfonts.com/css/pathway-extreme');
+@import url('https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap');
+@import url('https://fonts.cdnfonts.com/css/wix-madefor-display');
+@import url('https://fonts.cdnfonts.com/css/martian-mono');
+
+                
+
+/* CSS classes come after all imports */
+.font-pathway {
+  font-family: 'Pathway Extreme', sans-serif;
+}
+
+.font-montecarlo {
+  font-family: 'MonteCarlo', cursive;
+}
+
+.font-wix {
+  font-family: 'Wix Madefor Display', sans-serif;
+}
+
+.font-martian {
+  font-family: 'Martian Mono', monospace;
+}
