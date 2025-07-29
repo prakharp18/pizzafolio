@@ -38,7 +38,7 @@ export default function CheckIt() {
           <img src="/Checkit Login.png" alt="CheckIt Project Screenshot" className="w-full h-auto object-contain rounded-xl" />
         </div>
 
-        {/* Features Gallery */}
+        
         <div className="space-y-8">
          
           <div className="grid grid-cols-3 gap-16">
