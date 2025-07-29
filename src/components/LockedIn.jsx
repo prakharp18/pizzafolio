@@ -1,7 +1,28 @@
 import { ExternalLink } from 'lucide-react'
 import HomeHeader from './HomeHeader'
+import { useEffect, useState } from 'react'
 
 export default function LockedIn() {
+  const [visibleImages, setVisibleImages] = useState(new Set())
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleImages(prev => new Set([...prev, entry.target.dataset.index]))
+          }
+        })
+      },
+      { threshold: 0.2 }
+    )
+
+    // Observe all feature images
+    const images = document.querySelectorAll('[data-fade-in]')
+    images.forEach(img => observer.observe(img))
+
+    return () => observer.disconnect()
+  }, [])
   return (
     <div className="min-h-screen bg-black text-red-600">
       <HomeHeader />
@@ -44,19 +65,31 @@ export default function LockedIn() {
             <img 
               src="/Work.png" 
               alt="LockedIn Feature 1" 
-              className="w-full h-48 object-contain rounded-xl transition-transform duration-300 hover:scale-105 cursor-pointer" 
+              className={`w-full h-48 object-contain rounded-xl transition-all duration-700 hover:scale-105 cursor-pointer ${
+                visibleImages.has('0') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              data-fade-in
+              data-index="0"
               onClick={() => window.open('/Work.png', '_blank')}
             />
             <img 
               src="/Break.png" 
               alt="LockedIn Feature 2" 
-              className="w-full h-48 object-contain rounded-xl transition-transform duration-300 hover:scale-105 cursor-pointer" 
+              className={`w-full h-48 object-contain rounded-xl transition-all duration-700 delay-150 hover:scale-105 cursor-pointer ${
+                visibleImages.has('1') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              data-fade-in
+              data-index="1"
               onClick={() => window.open('/Break.png', '_blank')}
             />
             <img 
               src="/Writing.png" 
               alt="LockedIn Feature 3" 
-              className="w-full h-48 object-contain rounded-xl transition-transform duration-300 hover:scale-105 cursor-pointer" 
+              className={`w-full h-48 object-contain rounded-xl transition-all duration-700 delay-300 hover:scale-105 cursor-pointer ${
+                visibleImages.has('2') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              data-fade-in
+              data-index="2"
               onClick={() => window.open('/Writing.png', '_blank')}
             />
           </div>
@@ -66,19 +99,31 @@ export default function LockedIn() {
             <img 
               src="/Focus.png" 
               alt="LockedIn Feature 4" 
-              className="w-full h-48 object-contain rounded-xl transition-transform duration-300 hover:scale-105 cursor-pointer" 
+              className={`w-full h-48 object-contain rounded-xl transition-all duration-700 delay-100 hover:scale-105 cursor-pointer ${
+                visibleImages.has('3') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              data-fade-in
+              data-index="3"
               onClick={() => window.open('/Focus.png', '_blank')}
             />
             <img 
               src="/Random.png" 
               alt="LockedIn Feature 5" 
-              className="w-full h-48 object-contain rounded-xl transition-transform duration-300 hover:scale-105 cursor-pointer" 
+              className={`w-full h-48 object-contain rounded-xl transition-all duration-700 delay-250 hover:scale-105 cursor-pointer ${
+                visibleImages.has('4') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              data-fade-in
+              data-index="4"
               onClick={() => window.open('/Random.png', '_blank')}
             />
             <img 
               src="/Statistics.png" 
               alt="LockedIn Feature 6" 
-              className="w-full h-48 object-contain rounded-xl transition-transform duration-300 hover:scale-105 cursor-pointer" 
+              className={`w-full h-48 object-contain rounded-xl transition-all duration-700 delay-400 hover:scale-105 cursor-pointer ${
+                visibleImages.has('5') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+              data-fade-in
+              data-index="5"
               onClick={() => window.open('/Statistics.png', '_blank')}
             />
           </div>
