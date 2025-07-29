@@ -137,8 +137,8 @@ export default function MainClock() {
             </div>
           </div>
           <div className="text-right text-red-400 font-wix max-w-xs">
-            <p className="text-sm italic">"Life moves fast. Stay on time</p>
-            <p className="text-sm italic">and enjoy every moment!"</p>
+            <p className="text-sm italic">"In the IDE of life, be the main class</p>
+            <p className="text-sm italic">just don't forget to declare your ‘public static void awesome()’ method."</p>
           </div>
         </div>
 

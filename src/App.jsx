@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import HomeHeader from "./components/HomeHeader"
 import MainClock from "./components/MainClock"
 import LockedIn from "./components/LockedIn"
-
+import CheckIt from "./components/CheckIt"
 // Home Page Component
 function HomePage() {
   return (
@@ -20,6 +20,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/projects/lockedin" element={<LockedIn />} />
+        <Route path="/projects/checkit" element={<CheckIt />} />
+        
       </Routes>
     </Router>
   )
