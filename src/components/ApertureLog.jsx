@@ -1,41 +1,69 @@
 import { ExternalLink } from 'lucide-react'
 import HomeHeader from './HomeHeader'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback, useMemo, memo } from 'react'
+import { useIntelligentImageLoading, useImagePerformance } from '../hooks/useImageOptimization'
+import { imageMemoryManager } from '../utils/memoryManager'
+import { preloadImages } from '../utils/imageOptimization'
 
-export default function ApertureLog() {
+const ApertureLog = memo(() => {
   const [loadedImages, setLoadedImages] = useState(new Set())
+  const { observeImage, handleImageLoad: handleIntelligentLoad, preloadCriticalImages } = useIntelligentImageLoading()
+  const { trackImageLoad, trackImageError } = useImagePerformance()
+  const imageRefs = useRef(new Map())
 
-  // Image data arrays - Updated to 12 portraits
-  const landscapeImages = [
+  // Image data arrays - memoized to prevent dependency issues
+  const landscapeImages = useMemo(() => [
     { src: '/aperture-landscape-1.jpg', alt: 'Aperture Landscape 1' },
     { src: '/aperture-landscape-2.jpg', alt: 'Aperture Landscape 2' },
     { src: '/aperture-landscape-3.jpg', alt: 'Aperture Landscape 3' }
-  ]
+  ], [])
 
-  const portraitImages = Array.from({ length: 12 }, (_, i) => ({
+  const portraitImages = useMemo(() => Array.from({ length: 12 }, (_, i) => ({
     src: `/aperture-photo-${i + 1}.jpg`,
     alt: `Aperture Photo ${i + 1}`
-  }))
+  })), [])
 
   // Group portraits into rows of 3 (4 rows total)
-  const portraitRows = []
-  for (let i = 0; i < portraitImages.length; i += 3) {
-    portraitRows.push(portraitImages.slice(i, i + 3))
-  }
+  const portraitRows = useMemo(() => {
+    const rows = []
+    for (let i = 0; i < portraitImages.length; i += 3) {
+      rows.push(portraitImages.slice(i, i + 3))
+    }
+    return rows
+  }, [portraitImages])
 
-  // Preload critical images on component mount
+  // Preload critical images on component mount with enhanced preloading
   useEffect(() => {
-    const preloadImages = [...landscapeImages, ...portraitImages.slice(0, 3)]
-    preloadImages.forEach(image => {
-      const img = new Image()
-      img.src = image.src
-    })
-  }, [])
+    const criticalImages = [...landscapeImages.map(img => img.src), ...portraitImages.slice(0, 3).map(img => img.src)]
+    preloadCriticalImages(criticalImages)
+    preloadImages(criticalImages, 'high').catch(() => {})
+  }, [landscapeImages, portraitImages, preloadCriticalImages])
 
-  // Handle image load completion
-  const handleImageLoad = (imageId) => {
+  // Enhanced image load handler with performance tracking
+  const handleImageLoad = useCallback((imageId) => {
+    const startTime = performance.now()
     setLoadedImages(prev => new Set([...prev, imageId]))
-  }
+    handleIntelligentLoad(imageId)
+    
+    // Track performance
+    const loadTime = performance.now() - startTime
+    trackImageLoad(imageId, loadTime)
+    
+    // Cache management
+    const imageElement = imageRefs.current.get(imageId)
+    if (imageElement) {
+      imageMemoryManager.cacheImage(imageElement.src, imageElement)
+    }
+  }, [handleIntelligentLoad, trackImageLoad])
+
+  // Image ref callback for Intersection Observer
+  const setImageRef = useCallback((element, imageId) => {
+    if (element) {
+      imageRefs.current.set(imageId, element)
+      observeImage(element)
+      element.dataset.imageId = imageId
+    }
+  }, [observeImage])
 
   return (
     <div className="min-h-screen bg-black text-red-600">
@@ -80,11 +108,13 @@ export default function ApertureLog() {
                     alt={image.alt}
                     loading="lazy"
                     decoding="async"
+                    ref={(el) => setImageRef(el, imageId)}
                     className={`w-full h-64 object-cover rounded-xl transition-opacity duration-500 ${
                       isLoaded ? 'opacity-100' : 'opacity-0'
                     }`}
                     style={{ userSelect: 'none' }}
                     onLoad={() => handleImageLoad(imageId)}
+                    onError={() => trackImageError()}
                     onContextMenu={(e) => e.preventDefault()}
                     onDragStart={(e) => e.preventDefault()}
                   />
@@ -116,11 +146,13 @@ export default function ApertureLog() {
                       alt={image.alt}
                       loading="lazy"
                       decoding="async"
+                      ref={(el) => setImageRef(el, imageId)}
                       className={`w-72 h-[512px] object-cover rounded-xl transition-opacity duration-500 ${
                         isLoaded ? 'opacity-100' : 'opacity-0'
                       }`}
                       style={{ userSelect: 'none' }}
                       onLoad={() => handleImageLoad(imageId)}
+                      onError={() => trackImageError()}
                       onContextMenu={(e) => e.preventDefault()}
                       onDragStart={(e) => e.preventDefault()}
                     />
@@ -143,4 +175,8 @@ export default function ApertureLog() {
       </div>
     </div>
   )
-}
+})
+
+ApertureLog.displayName = 'ApertureLog'
+
+export default ApertureLog

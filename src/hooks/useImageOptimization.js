@@ -75,7 +75,7 @@ export const useImagePerformance = () => {
     }))
   }
 
-  const trackImageError = (imageId) => {
+  const trackImageError = () => {
     setMetrics(prev => ({
       ...prev,
       failedImages: prev.failedImages + 1

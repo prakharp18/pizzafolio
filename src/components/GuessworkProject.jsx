@@ -1,23 +1,57 @@
 import HomeHeader from './HomeHeader'
-import { useState } from 'react'
+import { useState, useRef, useCallback, useEffect, useMemo } from 'react'
+import { useIntelligentImageLoading, useImagePerformance } from '../hooks/useImageOptimization'
+import { imageMemoryManager } from '../utils/memoryManager'
+import { preloadImages } from '../utils/imageOptimization'
 
 export default function GuessworkProject() {
   const [loadedImages, setLoadedImages] = useState(new Set())
+  const { observeImage, handleImageLoad: handleIntelligentLoad, preloadCriticalImages } = useIntelligentImageLoading()
+  const { trackImageLoad, trackImageError } = useImagePerformance()
+  const imageRefs = useRef(new Map())
 
-  // Image data array
-  const images = [
+  // Image data array - memoized to prevent dependency issues
+  const images = useMemo(() => [
     { src: '/guesswork-feature-1.jpg', alt: 'Guesswork Feature 1' },
     { src: '/guesswork-feature-2.jpg', alt: 'Guesswork Feature 2' },
     { src: '/guesswork-feature-3.jpg', alt: 'Guesswork Feature 3' },
     { src: '/guesswork-feature-4.jpg', alt: 'Guesswork Feature 4' },
     { src: '/guesswork-feature-5.jpg', alt: 'Guesswork Feature 5' },
     { src: '/guesswork-feature-6.jpg', alt: 'Guesswork Feature 6' }
-  ]
+  ], [])
 
-  // Handle image load completion
-  const handleImageLoad = (imageId) => {
+  // Preload critical images on mount
+  useEffect(() => {
+    const criticalImages = images.slice(0, 3).map(img => img.src)
+    preloadCriticalImages(criticalImages)
+    preloadImages(criticalImages, 'high').catch(() => {})
+  }, [preloadCriticalImages, images])
+
+  // Enhanced image load handler with performance tracking
+  const handleImageLoad = useCallback((imageId) => {
+    const startTime = performance.now()
     setLoadedImages(prev => new Set([...prev, imageId]))
-  }
+    handleIntelligentLoad(imageId)
+    
+    // Track performance
+    const loadTime = performance.now() - startTime
+    trackImageLoad(imageId, loadTime)
+    
+    // Cache management
+    const imageElement = imageRefs.current.get(imageId)
+    if (imageElement) {
+      imageMemoryManager.cacheImage(imageElement.src, imageElement)
+    }
+  }, [handleIntelligentLoad, trackImageLoad])
+
+  // Image ref callback for Intersection Observer
+  const setImageRef = useCallback((element, imageId) => {
+    if (element) {
+      imageRefs.current.set(imageId, element)
+      observeImage(element)
+      element.dataset.imageId = imageId
+    }
+  }, [observeImage])
   return (
     <div className="min-h-screen bg-black text-red-600">
       <HomeHeader />
@@ -73,11 +107,13 @@ export default function GuessworkProject() {
                     alt={image.alt}
                     loading="lazy"
                     decoding="async"
+                    ref={(el) => setImageRef(el, imageId)}
                     className={`w-full h-48 object-contain rounded-xl transition-opacity duration-500 ${
                       isLoaded ? 'opacity-100' : 'opacity-0'
                     }`}
                     style={{ userSelect: 'none' }}
                     onLoad={() => handleImageLoad(imageId)}
+                    onError={() => trackImageError()}
                     onContextMenu={(e) => e.preventDefault()}
                     onDragStart={(e) => e.preventDefault()}
                   />
@@ -106,11 +142,13 @@ export default function GuessworkProject() {
                     alt={image.alt}
                     loading="lazy"
                     decoding="async"
+                    ref={(el) => setImageRef(el, imageId)}
                     className={`w-full h-48 object-contain rounded-xl transition-opacity duration-500 ${
                       isLoaded ? 'opacity-100' : 'opacity-0'
                     }`}
                     style={{ userSelect: 'none' }}
                     onLoad={() => handleImageLoad(imageId)}
+                    onError={() => trackImageError()}
                     onContextMenu={(e) => e.preventDefault()}
                     onDragStart={(e) => e.preventDefault()}
                   />

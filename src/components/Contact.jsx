@@ -1,7 +1,46 @@
 import { Github, Linkedin } from 'lucide-react'
 import HomeHeader from './HomeHeader'
+import { useRef, useCallback, useEffect } from 'react'
+import { useIntelligentImageLoading, useImagePerformance } from '../hooks/useImageOptimization'
+import { imageMemoryManager } from '../utils/memoryManager'
+import { preloadImages } from '../utils/imageOptimization'
 
 export default function Contact() {
+  const { observeImage, handleImageLoad: handleIntelligentLoad, preloadCriticalImages } = useIntelligentImageLoading()
+  const { trackImageLoad, trackImageError } = useImagePerformance()
+  const imageRefs = useRef(new Map())
+
+  // Preload profile image on mount
+  useEffect(() => {
+    const criticalImages = ['/profile-image.jpg']
+    preloadCriticalImages(criticalImages)
+    preloadImages(criticalImages, 'high').catch(() => {})
+  }, [preloadCriticalImages])
+
+  // Enhanced image load handler
+  const handleImageLoad = useCallback((imageId) => {
+    const startTime = performance.now()
+    handleIntelligentLoad(imageId)
+    
+    // Track performance
+    const loadTime = performance.now() - startTime
+    trackImageLoad(imageId, loadTime)
+    
+    // Cache management
+    const imageElement = imageRefs.current.get(imageId)
+    if (imageElement) {
+      imageMemoryManager.cacheImage(imageElement.src, imageElement)
+    }
+  }, [handleIntelligentLoad, trackImageLoad])
+
+  // Image ref callback for Intersection Observer
+  const setImageRef = useCallback((element, imageId) => {
+    if (element) {
+      imageRefs.current.set(imageId, element)
+      observeImage(element)
+      element.dataset.imageId = imageId
+    }
+  }, [observeImage])
 
   return (
     <div className="min-h-screen bg-black text-red-600">
@@ -47,7 +86,10 @@ export default function Contact() {
               <img 
                 src="/profile-image.jpg" 
                 alt="Prakhar Porwal - Artist/Filmmaker" 
+                ref={(el) => setImageRef(el, 'profile')}
                 className="w-96 h-96 object-cover rounded-2xl"
+                onLoad={() => handleImageLoad('profile')}
+                onError={() => trackImageError()}
                 onContextMenu={(e) => e.preventDefault()}
                 onDragStart={(e) => e.preventDefault()}
                 style={{ userSelect: 'none' }}
