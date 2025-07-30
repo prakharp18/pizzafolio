@@ -1,28 +1,24 @@
 import { ExternalLink } from 'lucide-react'
 import HomeHeader from './HomeHeader'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export default function LockedIn() {
-  const [visibleImages, setVisibleImages] = useState(new Set())
+  const [loadedImages, setLoadedImages] = useState(new Set())
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisibleImages(prev => new Set([...prev, entry.target.dataset.index]))
-          }
-        })
-      },
-      { threshold: 0.2 }
-    )
+  // Image data array
+  const images = [
+    { src: '/Work.png', alt: 'LockedIn Feature 1' },
+    { src: '/Break.png', alt: 'LockedIn Feature 2' },
+    { src: '/Writing.png', alt: 'LockedIn Feature 3' },
+    { src: '/Focus.png', alt: 'LockedIn Feature 4' },
+    { src: '/Random.png', alt: 'LockedIn Feature 5' },
+    { src: '/Statistics.png', alt: 'LockedIn Feature 6' }
+  ]
 
-    // Observe all feature images
-    const images = document.querySelectorAll('[data-fade-in]')
-    images.forEach(img => observer.observe(img))
-
-    return () => observer.disconnect()
-  }, [])
+  // Handle image load completion
+  const handleImageLoad = (imageId) => {
+    setLoadedImages(prev => new Set([...prev, imageId]))
+  }
   return (
     <div className="min-h-screen bg-black text-red-600">
       <HomeHeader />
@@ -62,100 +58,67 @@ export default function LockedIn() {
         <div className="space-y-8">
           
           <div className="grid grid-cols-3 gap-16">
-            <div className="relative">
-              <img 
-                src="/Work.png" 
-                alt="LockedIn Feature 1" 
-                className={`w-full h-48 object-contain rounded-xl transition-all duration-700 ${
-                  visibleImages.has('0') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-                data-fade-in
-                data-index="0"
-                onContextMenu={(e) => e.preventDefault()}
-                onDragStart={(e) => e.preventDefault()}
-                style={{ userSelect: 'none' }}
-              />
-              <div className="absolute inset-0 pointer-events-none select-none" />
-            </div>
-            <div className="relative">
-              <img 
-                src="/Break.png" 
-                alt="LockedIn Feature 2" 
-                className={`w-full h-48 object-contain rounded-xl transition-all duration-700 delay-150 ${
-                  visibleImages.has('1') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-                data-fade-in
-                data-index="1"
-                onContextMenu={(e) => e.preventDefault()}
-                onDragStart={(e) => e.preventDefault()}
-                style={{ userSelect: 'none' }}
-              />
-              <div className="absolute inset-0 pointer-events-none select-none" />
-            </div>
-            <div className="relative">
-              <img 
-                src="/Writing.png" 
-                alt="LockedIn Feature 3" 
-                className={`w-full h-48 object-contain rounded-xl transition-all duration-700 delay-300 ${
-                  visibleImages.has('2') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-                data-fade-in
-                data-index="2"
-                onContextMenu={(e) => e.preventDefault()}
-                onDragStart={(e) => e.preventDefault()}
-                style={{ userSelect: 'none' }}
-              />
-              <div className="absolute inset-0 pointer-events-none select-none" />
-            </div>
+            {images.slice(0, 3).map((image, index) => {
+              const imageId = index.toString()
+              const isLoaded = loadedImages.has(imageId)
+              return (
+                <div key={imageId} className="relative">
+                  {/* Loading Skeleton */}
+                  {!isLoaded && (
+                    <div className="absolute inset-0 bg-red-900/20 animate-pulse rounded-xl flex items-center justify-center">
+                      <div className="w-6 h-6 border-2 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+                    </div>
+                  )}
+                  
+                  <img 
+                    src={image.src}
+                    alt={image.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className={`w-full h-48 object-contain rounded-xl transition-opacity duration-500 ${
+                      isLoaded ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    style={{ userSelect: 'none' }}
+                    onLoad={() => handleImageLoad(imageId)}
+                    onContextMenu={(e) => e.preventDefault()}
+                    onDragStart={(e) => e.preventDefault()}
+                  />
+                  <div className="absolute inset-0 pointer-events-none select-none" />
+                </div>
+              )
+            })}
           </div>
 
-        
           <div className="grid grid-cols-3 gap-16">
-            <div className="relative">
-              <img 
-                src="/Focus.png" 
-                alt="LockedIn Feature 4" 
-                className={`w-full h-48 object-contain rounded-xl transition-all duration-700 delay-100 ${
-                  visibleImages.has('3') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-                data-fade-in
-                data-index="3"
-                onContextMenu={(e) => e.preventDefault()}
-                onDragStart={(e) => e.preventDefault()}
-                style={{ userSelect: 'none' }}
-              />
-              <div className="absolute inset-0 pointer-events-none select-none" />
-            </div>
-            <div className="relative">
-              <img 
-                src="/Random.png" 
-                alt="LockedIn Feature 5" 
-                className={`w-full h-48 object-contain rounded-xl transition-all duration-700 delay-250 ${
-                  visibleImages.has('4') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-                data-fade-in
-                data-index="4"
-                onContextMenu={(e) => e.preventDefault()}
-                onDragStart={(e) => e.preventDefault()}
-                style={{ userSelect: 'none' }}
-              />
-              <div className="absolute inset-0 pointer-events-none select-none" />
-            </div>
-            <div className="relative">
-              <img 
-                src="/Statistics.png" 
-                alt="LockedIn Feature 6" 
-                className={`w-full h-48 object-contain rounded-xl transition-all duration-700 delay-400 ${
-                  visibleImages.has('5') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                }`}
-                data-fade-in
-                data-index="5"
-                onContextMenu={(e) => e.preventDefault()}
-                onDragStart={(e) => e.preventDefault()}
-                style={{ userSelect: 'none' }}
-              />
-              <div className="absolute inset-0 pointer-events-none select-none" />
-            </div>
+            {images.slice(3, 6).map((image, index) => {
+              const imageId = (index + 3).toString()
+              const isLoaded = loadedImages.has(imageId)
+              return (
+                <div key={imageId} className="relative">
+                  {/* Loading Skeleton */}
+                  {!isLoaded && (
+                    <div className="absolute inset-0 bg-red-900/20 animate-pulse rounded-xl flex items-center justify-center">
+                      <div className="w-6 h-6 border-2 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+                    </div>
+                  )}
+                  
+                  <img 
+                    src={image.src}
+                    alt={image.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className={`w-full h-48 object-contain rounded-xl transition-opacity duration-500 ${
+                      isLoaded ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    style={{ userSelect: 'none' }}
+                    onLoad={() => handleImageLoad(imageId)}
+                    onContextMenu={(e) => e.preventDefault()}
+                    onDragStart={(e) => e.preventDefault()}
+                  />
+                  <div className="absolute inset-0 pointer-events-none select-none" />
+                </div>
+              )
+            })}
           </div>
         </div>
 

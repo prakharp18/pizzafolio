@@ -6,6 +6,7 @@ import LockedIn from "./components/LockedIn"
 import CheckIt from "./components/CheckIt"
 import GuessworkProject from "./components/GuessworkProject"
 import Contact from "./components/Contact"
+import ApertureLog from "./components/ApertureLog"
 // Home Page Component
 function HomePage() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/projects/lockedin" element={<LockedIn />} />
         <Route path="/projects/checkit" element={<CheckIt />} />
         <Route path="/projects/GuessworkNeverLookedThisRight" element={<GuessworkProject />} />
+        <Route path="/projects/aperture-log" element={<ApertureLog />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
