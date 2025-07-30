@@ -7,10 +7,10 @@ export default function Contact() {
     <div className="min-h-screen bg-black text-red-600">
       <HomeHeader />
       
-      {/* Main Content */}
+      
       <div className="container mx-auto px-8 py-16">
         
-        {/* Page Title */}
+        
         <div className="text-center mb-16">
           <h1 className="text-6xl font-bold font-martian text-red-600 mb-6">Contact</h1>
         
