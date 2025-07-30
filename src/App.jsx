@@ -5,6 +5,7 @@ import MainClock from "./components/MainClock"
 import LockedIn from "./components/LockedIn"
 import CheckIt from "./components/CheckIt"
 import GuessworkProject from "./components/GuessworkProject"
+import Contact from "./components/Contact"
 // Home Page Component
 function HomePage() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/projects/lockedin" element={<LockedIn />} />
         <Route path="/projects/checkit" element={<CheckIt />} />
         <Route path="/projects/GuessworkNeverLookedThisRight" element={<GuessworkProject />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
     </Router>
   )
