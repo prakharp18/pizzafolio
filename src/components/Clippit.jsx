@@ -1,10 +1,10 @@
 import HomeHeader from './HomeHeader'
-import { useState, useRef, useCallback, useEffect, useMemo } from 'react'
+import { useState, useRef, useCallback, useEffect, useMemo, memo } from 'react'
 import { useIntelligentImageLoading, useImagePerformance } from '../hooks/useImageOptimization'
 import { imageMemoryManager } from '../utils/memoryManager'
 import { preloadImages } from '../utils/imageOptimization'
 
-export default function GuessworkProject() {
+const Clippit = memo(() => {
   const [loadedImages, setLoadedImages] = useState(new Set())
   const { observeImage, handleImageLoad: handleIntelligentLoad, preloadCriticalImages } = useIntelligentImageLoading()
   const { trackImageLoad, trackImageError } = useImagePerformance()
@@ -12,12 +12,12 @@ export default function GuessworkProject() {
 
   // Image data array - memoized to prevent dependency issues
   const images = useMemo(() => [
-    { src: '/guesswork-feature-1.jpg', alt: 'Guesswork Feature 1' },
-    { src: '/guesswork-feature-2.jpg', alt: 'Guesswork Feature 2' },
-    { src: '/guesswork-feature-3.jpg', alt: 'Guesswork Feature 3' },
-    { src: '/guesswork-feature-4.jpg', alt: 'Guesswork Feature 4' },
-    { src: '/guesswork-feature-5.jpg', alt: 'Guesswork Feature 5' },
-    { src: '/guesswork-feature-6.jpg', alt: 'Guesswork Feature 6' }
+    { src: '/clippit-feature-1.png', alt: 'Clippit Feature 1' },
+    { src: '/clippit-feature-2.png', alt: 'Clippit Feature 2' },
+    { src: '/clippit-feature-3.png', alt: 'Clippit Feature 3' },
+    { src: '/clippit-feature-4.png', alt: 'Clippit Feature 4' },
+    { src: '/clippit-feature-5.png', alt: 'Clippit Feature 5' },
+    { src: '/clippit-feature-6.png', alt: 'Clippit Feature 6' }
   ], [])
 
   // Preload critical images on mount
@@ -30,7 +30,9 @@ export default function GuessworkProject() {
   // Enhanced image load handler with performance tracking
   const handleImageLoad = useCallback((imageId) => {
     const startTime = performance.now()
+    
     setLoadedImages(prev => new Set([...prev, imageId]))
+    
     handleIntelligentLoad(imageId)
     
     // Track performance
@@ -44,6 +46,12 @@ export default function GuessworkProject() {
     }
   }, [handleIntelligentLoad, trackImageLoad])
 
+  // Enhanced error handler for debugging
+  const handleImageError = useCallback((imageId, src) => {
+    console.error(`❌ Failed to load image ${imageId}: ${src}`)
+    trackImageError()
+  }, [trackImageError])
+
   // Image ref callback for Intersection Observer
   const setImageRef = useCallback((element, imageId) => {
     if (element) {
@@ -52,43 +60,34 @@ export default function GuessworkProject() {
       element.dataset.imageId = imageId
     }
   }, [observeImage])
+
   return (
     <div className="min-h-screen bg-black text-red-600">
       <HomeHeader />
       
+      {/* Main Content */}
       <div className="container mx-auto px-8 py-16">
         
-        {/* Heading */}
+        {/* Project Header */}
         <div className="flex flex-col items-center mb-8">
           <div className="w-full max-w-4xl">
-            <h1 className="text-6xl font-bold font-martian text-red-600 text-center">Guesswork Never Looked This Right</h1>
+            <h1 className="text-6xl font-bold font-martian text-red-600 text-center">Clippit</h1>
           </div>
         </div>
 
-        
+        {/* Project Description */}
         <div className="flex flex-col items-center mb-16">
           <div className="w-full max-w-4xl">
             <p className="text-xl text-red-400 font-wix leading-relaxed text-center">
-              A visual story of friendship, laughter, and shared experiences, captured through my lens.
+              A powerful, modern Chrome extension for URL shortening, QR code generation, and link management.
             </p>
           </div>
         </div>
 
-        {/* Main Project Video */}
-        <div className="mb-16">
-          <iframe 
-            className="w-full h-96 rounded-xl"
-            src="https://www.youtube.com/embed/tPssFgUk6bA?rel=0&modestbranding=1&showinfo=0&controls=1"
-            title="Guesswork Never Looked This Right Demo"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
-
-        
+        {/* Gallery - 6 images layout: 3 on top row, 3 on bottom row */}
         <div className="space-y-8">
-          {/* Row 1 - 3 images */}
+          
+          {/* First Row - 3 images */}
           <div className="grid grid-cols-3 gap-16">
             {images.slice(0, 3).map((image, index) => {
               const imageId = index.toString()
@@ -108,12 +107,10 @@ export default function GuessworkProject() {
                     loading="lazy"
                     decoding="async"
                     ref={(el) => setImageRef(el, imageId)}
-                    className={`w-full h-48 object-contain rounded-xl transition-opacity duration-500 ${
-                      isLoaded ? 'opacity-100' : 'opacity-0'
-                    }`}
+                    className="w-full h-72 object-contain rounded-xl"
                     style={{ userSelect: 'none' }}
                     onLoad={() => handleImageLoad(imageId)}
-                    onError={() => trackImageError()}
+                    onError={() => handleImageError(imageId, image.src)}
                     onContextMenu={(e) => e.preventDefault()}
                     onDragStart={(e) => e.preventDefault()}
                   />
@@ -123,7 +120,7 @@ export default function GuessworkProject() {
             })}
           </div>
 
-          {/* Row 2 - 3 images */}
+          {/* Second Row - 3 images */}
           <div className="grid grid-cols-3 gap-16">
             {images.slice(3, 6).map((image, index) => {
               const imageId = (index + 3).toString()
@@ -143,12 +140,10 @@ export default function GuessworkProject() {
                     loading="lazy"
                     decoding="async"
                     ref={(el) => setImageRef(el, imageId)}
-                    className={`w-full h-48 object-contain rounded-xl transition-opacity duration-500 ${
-                      isLoaded ? 'opacity-100' : 'opacity-0'
-                    }`}
+                    className="w-full h-72 object-contain rounded-xl"
                     style={{ userSelect: 'none' }}
                     onLoad={() => handleImageLoad(imageId)}
-                    onError={() => trackImageError()}
+                    onError={() => handleImageError(imageId, image.src)}
                     onContextMenu={(e) => e.preventDefault()}
                     onDragStart={(e) => e.preventDefault()}
                   />
@@ -169,4 +164,8 @@ export default function GuessworkProject() {
       </div>
     </div>
   )
-}
+})
+
+Clippit.displayName = 'Clippit'
+
+export default Clippit

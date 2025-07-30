@@ -81,7 +81,7 @@ const ApertureLog = memo(() => {
 
         {/* Project Description */}
         <div className="mb-16 text-center">
-          <p className="text-xl text-red-400 font-wix leading-relaxed max-w-4xl mx-auto">
+          <p className="text-xl text-red-400 font-wix leading-relaxed max-w-4xl text-center mx-auto">
             An ongoing visual journal — no genre, just frames.
           </p>
         </div>
