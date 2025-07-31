@@ -2,7 +2,6 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-/* All @import statements must come first */
 @import url('https://fonts.cdnfonts.com/css/pathway-extreme');
 @import url('https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap');
 @import url('https://fonts.cdnfonts.com/css/wix-madefor-display');
@@ -10,7 +9,6 @@
 @import url('https://fonts.cdnfonts.com/css/azeret-mono');
                 
 
-/* CSS classes come after all imports */
 .font-pathway {
   font-family: 'Pathway Extreme', sans-serif;
 }

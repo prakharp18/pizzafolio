@@ -55,16 +55,13 @@ export default function Contact() {
         
         </div>
 
-        {/* Contact Content */}
         <div className="flex items-center justify-center gap-16 max-w-6xl mx-auto">
           
-          {/* Left Side - Contact Information */}
           <div className="flex flex-col justify-center space-y-4">
             <div>
               <h2 className="text-lg font-bold font-martian text-red-600 mb-6">Artist/Developer</h2>
             </div>
 
-            {/* Contact Details */}
             <div className="space-y-3">
               <div>
                 <p className="text-xs text-red-400 font-wix">pporwal2019@gmail.com</p>
@@ -80,7 +77,6 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Right Side - Portrait */}
           <div className="flex items-center justify-center">
             <div className="relative">
               <img 

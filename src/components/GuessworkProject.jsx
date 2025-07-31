@@ -88,14 +88,12 @@ export default function GuessworkProject() {
 
         
         <div className="space-y-8">
-          {/* Row 1 - 3 images */}
           <div className="grid grid-cols-3 gap-16">
             {images.slice(0, 3).map((image, index) => {
               const imageId = index.toString()
               const isLoaded = loadedImages.has(imageId)
               return (
                 <div key={imageId} className="relative">
-                  {/* Loading Skeleton */}
                   {!isLoaded && (
                     <div className="absolute inset-0 bg-red-900/20 animate-pulse rounded-xl flex items-center justify-center">
                       <div className="w-6 h-6 border-2 border-red-600 border-t-transparent rounded-full animate-spin"></div>
@@ -123,14 +121,12 @@ export default function GuessworkProject() {
             })}
           </div>
 
-          {/* Row 2 - 3 images */}
           <div className="grid grid-cols-3 gap-16">
             {images.slice(3, 6).map((image, index) => {
               const imageId = (index + 3).toString()
               const isLoaded = loadedImages.has(imageId)
               return (
                 <div key={imageId} className="relative">
-                  {/* Loading Skeleton */}
                   {!isLoaded && (
                     <div className="absolute inset-0 bg-red-900/20 animate-pulse rounded-xl flex items-center justify-center">
                       <div className="w-6 h-6 border-2 border-red-600 border-t-transparent rounded-full animate-spin"></div>
@@ -159,7 +155,6 @@ export default function GuessworkProject() {
           </div>
         </div>
 
-        {/* Copyright Notice */}
         <div className="mt-16 text-center">
           <p className="text-xs text-red-400/60">
             © 2025 Prakhar Porwal. All rights reserved. Unauthorized use prohibited.

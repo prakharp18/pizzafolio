@@ -5,10 +5,8 @@ const MobileConstructionScreen = memo(() => {
   return (
     <div className="min-h-screen bg-black text-red-600 flex flex-col items-center justify-center px-8">
       
-      {/* Main Content Container */}
       <div className="flex flex-col items-center text-center space-y-12 max-w-md">
         
-        {/* Branding - Same style as header */}
         <div className="flex flex-col items-center space-y-4">
           <div className="flex items-center justify-center space-x-2">
             <span className="text-2xl font-pathway font-bold tracking-wide">Directed by</span>
@@ -18,7 +16,6 @@ const MobileConstructionScreen = memo(() => {
           </div>
         </div>
 
-        {/* Under Construction Message */}
         <div className="space-y-6">
           <div className="space-y-2">
             <h1 className="text-3xl font-bold font-martian text-red-600">
@@ -78,7 +75,7 @@ const MobileConstructionScreen = memo(() => {
             </a>
             
             <a 
-              href="https://linkedin.com/in/prakhar-porwal-93430b229/" 
+              href="https://linkedin.com/in/pporwal25/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex flex-col items-center space-y-2 hover:text-red-400 transition-colors group"

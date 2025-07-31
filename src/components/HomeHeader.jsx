@@ -69,7 +69,7 @@ export default function HomeHeader() {
           <a href="https://github.com/prakharp18" target="_blank" rel="noopener noreferrer">
             <Github className="w-5 h-5 hover:text-red-400 transition-colors" />
           </a>
-          <a href="https://linkedin.com/in/prakhar-porwal-93430b229/" target="_blank" rel="noopener noreferrer">
+          <a href="https://linkedin.com/in/pporwal25/" target="_blank" rel="noopener noreferrer">
             <Linkedin className="w-5 h-5 hover:text-red-400 transition-colors" />
           </a>
           <a href="/Prakhar_Resume (2).pdf" download title="Download Resume">

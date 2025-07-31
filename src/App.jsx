@@ -1,5 +1,3 @@
-
-// App.jsx
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { memo, useEffect } from 'react'
 import HomeHeader from "./components/HomeHeader"
@@ -14,7 +12,6 @@ import DeviceWrapper from "./components/DeviceWrapper"
 import { imageMemoryManager } from './utils/memoryManager'
 import { usePerformanceOptimizations, useMemoryMonitor } from './hooks/usePerformanceOptimizations'
 
-// Home Page Component with memoization for performance
 const HomePage = memo(() => {
   return (
     <div className="bg-black h-screen overflow-hidden">
@@ -27,15 +24,11 @@ const HomePage = memo(() => {
 HomePage.displayName = 'HomePage'
 
 function App() {
-  // Initialize performance optimizations
   const { cleanupMemory } = usePerformanceOptimizations()
   
-  // Monitor memory usage
   useMemoryMonitor()
 
-  // Global memory management and cleanup
   useEffect(() => {
-    // Cleanup memory on app unmount
     return () => {
       cleanupMemory()
       imageMemoryManager.clearCache()

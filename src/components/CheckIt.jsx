@@ -12,7 +12,6 @@ const CheckIt = memo(() => {
   const { trackImageLoad, trackImageError } = useImagePerformance()
   const imageRefs = useRef(new Map())
 
-  // Image data array - memoized to prevent dependency issues
   const images = useMemo(() => [
     { src: '/checkit-feature-1.png', alt: 'CheckIt Feature 1' },
     { src: '/checkit-feature-2.png', alt: 'CheckIt Feature 2' },
@@ -22,14 +21,12 @@ const CheckIt = memo(() => {
     { src: '/checkit-feature-6.png', alt: 'CheckIt Feature 6' }
   ], [])
 
-  // Preload critical images on mount
   useEffect(() => {
     const criticalImages = ['/Checkit Login.png', ...images.slice(0, 3).map(img => img.src)]
     preloadCriticalImages(criticalImages)
     preloadImages(criticalImages, 'high').catch(() => {})
   }, [preloadCriticalImages, images])
 
-  // Enhanced image load handler with performance tracking
   const handleImageLoad = useCallback((imageId) => {
     const startTime = performance.now()
     setLoadedImages(prev => new Set([...prev, imageId]))
@@ -46,7 +43,6 @@ const CheckIt = memo(() => {
     }
   }, [handleIntelligentLoad, trackImageLoad])
 
-  // Image ref callback for Intersection Observer
   const setImageRef = useCallback((element, imageId) => {
     if (element) {
       imageRefs.current.set(imageId, element)

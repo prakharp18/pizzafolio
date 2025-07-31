@@ -11,7 +11,6 @@ const LockedIn = memo(() => {
   const { trackImageLoad, trackImageError } = useImagePerformance()
   const imageRefs = useRef(new Map())
 
-  // Image data array - memoized to prevent dependency issues
   const images = useMemo(() => [
     { src: '/Work.png', alt: 'LockedIn Feature 1' },
     { src: '/Break.png', alt: 'LockedIn Feature 2' },
@@ -45,7 +44,6 @@ const LockedIn = memo(() => {
     }
   }, [handleIntelligentLoad, trackImageLoad])
 
-  // Image ref callback for Intersection Observer
   const setImageRef = useCallback((element, imageId) => {
     if (element) {
       imageRefs.current.set(imageId, element)
@@ -57,7 +55,6 @@ const LockedIn = memo(() => {
     <div className="min-h-screen bg-black text-red-600">
       <HomeHeader />
       
-      {/* Main Content */}
       <div className="container mx-auto px-8 py-16">
         
         
@@ -83,7 +80,6 @@ const LockedIn = memo(() => {
           </p>
         </div>
 
-        {/* Main Project Snapshot */}
         <div className="mb-16">
           <img 
             src="/LockIn.png" 
@@ -100,7 +96,6 @@ const LockedIn = memo(() => {
           />
         </div>
 
-        {/* Gallery */}
         <div className="space-y-8">
           
           <div className="grid grid-cols-3 gap-16">
@@ -109,7 +104,6 @@ const LockedIn = memo(() => {
               const isLoaded = loadedImages.has(imageId)
               return (
                 <div key={imageId} className="relative">
-                  {/* Loading Skeleton */}
                   {!isLoaded && (
                     <div className="absolute inset-0 bg-red-900/20 animate-pulse rounded-xl flex items-center justify-center">
                       <div className="w-6 h-6 border-2 border-red-600 border-t-transparent rounded-full animate-spin"></div>
@@ -143,7 +137,6 @@ const LockedIn = memo(() => {
               const isLoaded = loadedImages.has(imageId)
               return (
                 <div key={imageId} className="relative">
-                  {/* Loading Skeleton */}
                   {!isLoaded && (
                     <div className="absolute inset-0 bg-red-900/20 animate-pulse rounded-xl flex items-center justify-center">
                       <div className="w-6 h-6 border-2 border-red-600 border-t-transparent rounded-full animate-spin"></div>
@@ -172,7 +165,6 @@ const LockedIn = memo(() => {
           </div>
         </div>
 
-        {/* Copyright Notice */}
         <div className="mt-16 text-center">
           <p className="text-xs text-red-400/60">
             © 2025 Prakhar Porwal. All rights reserved. Unauthorized use prohibited.
