@@ -48,6 +48,12 @@ export default function HomeHeader() {
                 >
                   Aperture Log
                 </Link>
+                <Link 
+                  to="/projects/scores" 
+                  className="block px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-900/20 transition-colors"
+                >
+                  Scores
+                </Link>
               </div>
             </div>
           </div>

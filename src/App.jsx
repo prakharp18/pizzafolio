@@ -8,6 +8,7 @@ import Clippit from "./components/Clippit"
 import GuessworkProject from "./components/GuessworkProject"
 import Contact from "./components/Contact"
 import ApertureLog from "./components/ApertureLog"
+import Scores from "./components/Scores"
 import DeviceWrapper from "./components/DeviceWrapper"
 import { imageMemoryManager } from './utils/memoryManager'
 import { usePerformanceOptimizations, useMemoryMonitor } from './hooks/usePerformanceOptimizations'
@@ -45,6 +46,7 @@ function App() {
           <Route path="/projects/clippit" element={<Clippit />} />
           <Route path="/projects/GuessworkNeverLookedThisRight" element={<GuessworkProject />} />
           <Route path="/projects/aperture-log" element={<ApertureLog />} />
+          <Route path="/projects/scores" element={<Scores />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </Router>
