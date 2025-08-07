@@ -1,4 +1,4 @@
-import { Github, Linkedin, Instagram, FileDown } from "lucide-react"
+import { Github, Linkedin, Instagram, FileDown, Brain } from "lucide-react"
 import { Link } from 'react-router-dom'
 
 export default function HomeHeader() {
@@ -69,17 +69,25 @@ export default function HomeHeader() {
 
         {/* Right Icons */}
         <div className="flex space-x-5 items-center justify-end flex-1">
-          <a href="https://instagram.com/pizzat25_" target="_blank" rel="noopener noreferrer">
+          <a href="https://instagram.com/pizzat25_" target="_blank" rel="noopener noreferrer" className="group relative">
             <Instagram className="w-5 h-5 hover:text-red-400 transition-colors" />
+            <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black text-red-400 text-xs font-wix px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Instagram</span>
           </a>
-          <a href="https://github.com/prakharp18" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/prakharp18" target="_blank" rel="noopener noreferrer" className="group relative">
             <Github className="w-5 h-5 hover:text-red-400 transition-colors" />
+            <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black text-red-400 text-xs font-wix px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">GitHub</span>
           </a>
-          <a href="https://linkedin.com/in/pporwal25/" target="_blank" rel="noopener noreferrer">
+          <a href="https://linkedin.com/in/pporwal25/" target="_blank" rel="noopener noreferrer" className="group relative">
             <Linkedin className="w-5 h-5 hover:text-red-400 transition-colors" />
+            <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black text-red-400 text-xs font-wix px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">LinkedIn</span>
           </a>
-          <a href="/Prakhar_Resume (2).pdf" download title="Download Resume">
+          <a href="https://leetcode.com/prakharp25/" target="_blank" rel="noopener noreferrer" className="group relative">
+            <Brain className="w-5 h-5 hover:text-red-400 transition-colors" />
+            <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black text-red-400 text-xs font-wix px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">LeetCode</span>
+          </a>
+          <a href="/Prakhar_Resume (2).pdf" download className="group relative">
             <FileDown className="w-5 h-5 hover:text-red-400 transition-colors" />
+            <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black text-red-400 text-xs font-wix px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Resume</span>
           </a>
         </div>
       </div>
