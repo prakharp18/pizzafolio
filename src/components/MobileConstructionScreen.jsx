@@ -1,87 +1,11 @@
 import { Github, Linkedin, Instagram, Smartphone, Laptop } from "lucide-react"
-import { memo, useState, useEffect } from 'react'
-
-// Simple Analog Clock Component
-const AnalogClock = () => {
-  const [time, setTime] = useState(new Date())
-
-  useEffect(() => {
-    const timer = setInterval(() => setTime(new Date()), 1000)
-    return () => clearInterval(timer)
-  }, [])
-
-  const secondAngle = (time.getSeconds() * 6) - 90
-  const minuteAngle = (time.getMinutes() * 6) - 90
-  const hourAngle = ((time.getHours() % 12) * 30 + time.getMinutes() * 0.5) - 90
-
-  return (
-    <div className="relative w-16 h-16">
-      {/* Clock face */}
-      <div className="w-full h-full border-2 border-red-600 rounded-full bg-black relative">
-        {/* Hour markers */}
-        {[...Array(12)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-0.5 h-2 bg-red-600"
-            style={{
-              top: '2px',
-              left: '50%',
-              transformOrigin: '50% 30px',
-              transform: `translateX(-50%) rotate(${i * 30}deg)`
-            }}
-          />
-        ))}
-        
-        {/* Hour hand */}
-        <div
-          className="absolute w-0.5 h-4 bg-red-600 rounded"
-          style={{
-            top: '50%',
-            left: '50%',
-            transformOrigin: '50% 100%',
-            transform: `translate(-50%, -100%) rotate(${hourAngle}deg)`
-          }}
-        />
-        
-        {/* Minute hand */}
-        <div
-          className="absolute w-0.5 h-6 bg-red-500 rounded"
-          style={{
-            top: '50%',
-            left: '50%',
-            transformOrigin: '50% 100%',
-            transform: `translate(-50%, -100%) rotate(${minuteAngle}deg)`
-          }}
-        />
-        
-        {/* Second hand */}
-        <div
-          className="absolute w-px h-6 bg-red-400 rounded"
-          style={{
-            top: '50%',
-            left: '50%',
-            transformOrigin: '50% 100%',
-            transform: `translate(-50%, -100%) rotate(${secondAngle}deg)`
-          }}
-        />
-        
-        {/* Center dot */}
-        <div className="absolute w-1 h-1 bg-red-600 rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-      </div>
-    </div>
-  )
-}
+import { memo } from 'react'
 
 const MobileConstructionScreen = memo(() => {
   return (
     <div className="min-h-screen bg-black text-red-600 flex flex-col items-center justify-center px-8 relative">
       
-      {/* Analog Clock - Top Left */}
-      <div className="absolute top-6 left-6">
-        <AnalogClock />
-      </div>
-      
-      <div className="flex flex-col items-center text-center space-y-12 max-w-md">
+      <div className="flex flex-col items-center text-center space-y-8 max-w-md">
         
         <div className="flex flex-col items-center space-y-4">
           <div className="flex items-center justify-center space-x-2">
@@ -97,7 +21,7 @@ const MobileConstructionScreen = memo(() => {
           <img 
             src="/cat.gif" 
             alt="Cute black kitten sleeping"
-            className="w-40 h-32 object-contain"
+            className="w-32 h-24 object-contain"
             style={{
               backgroundColor: 'black',
               mixBlendMode: 'screen',
