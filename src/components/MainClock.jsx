@@ -25,12 +25,13 @@ export default function MainClock() {
   }
 
   const formatMainTime = (date) => {
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
     return date.toLocaleTimeString('en-US', {
       timeZone: activeTimezone,
       hour12: !is24Hour,
       hour: '2-digit',
       minute: '2-digit',
-      second: '2-digit'
+      ...(isMobile ? {} : { second: '2-digit' })
     })
   }
 
