@@ -85,7 +85,7 @@ export default function HomeHeader() {
             <Brain className="w-5 h-5 hover:text-red-400 transition-colors" />
             <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black text-red-400 text-xs font-wix px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">LeetCode</span>
           </a>
-          <a href="/Prakhar_Resume (2).pdf" download className="group relative">
+          <a href="/Prakhar_Resume.pdf" download className="group relative">
             <FileDown className="w-5 h-5 hover:text-red-400 transition-colors" />
             <span className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-black text-red-400 text-xs font-wix px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Resume</span>
           </a>

@@ -60,7 +60,7 @@ const SocialDock = memo(() => {
           </a>
 
           <a 
-            href="/Prakhar_Resume (2).pdf" 
+            href="/Prakhar_Resume.pdf" 
             download 
             className="group relative p-1.5 rounded-lg hover:bg-red-900/20 transition-all duration-200 hover:scale-110"
             title="Resume"
