@@ -9,7 +9,7 @@ import GuessworkProject from "./components/GuessworkProject"
 import Contact from "./components/Contact"
 import ApertureLog from "./components/ApertureLog"
 import Scores from "./components/Scores"
-import DeviceWrapper from "./components/DeviceWrapper"
+import SocialDock from "./components/SocialDock"
 import { imageMemoryManager } from './utils/memoryManager'
 import { usePerformanceOptimizations, useMemoryMonitor } from './hooks/usePerformanceOptimizations'
 
@@ -18,6 +18,7 @@ const HomePage = memo(() => {
     <div className="bg-black h-screen overflow-hidden">
       <HomeHeader />
       <MainClock />
+      <SocialDock />
     </div>
   )
 })
@@ -37,20 +38,18 @@ function App() {
   }, [cleanupMemory])
 
   return (
-    <DeviceWrapper>
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/projects/lockedin" element={<LockedIn />} />
-          <Route path="/projects/checkit" element={<CheckIt />} />
-          <Route path="/projects/clippit" element={<Clippit />} />
-          <Route path="/projects/GuessworkNeverLookedThisRight" element={<GuessworkProject />} />
-          <Route path="/projects/aperture-log" element={<ApertureLog />} />
-          <Route path="/projects/scores" element={<Scores />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </Router>
-    </DeviceWrapper>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/projects/lockedin" element={<LockedIn />} />
+        <Route path="/projects/checkit" element={<CheckIt />} />
+        <Route path="/projects/clippit" element={<Clippit />} />
+        <Route path="/projects/GuessworkNeverLookedThisRight" element={<GuessworkProject />} />
+        <Route path="/projects/aperture-log" element={<ApertureLog />} />
+        <Route path="/projects/scores" element={<Scores />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </Router>
   )
 }
 
