@@ -1,5 +1,6 @@
-import { Github, Linkedin, Instagram, Smartphone, Laptop } from "lucide-react"
+import { Github, Linkedin, Instagram, Smartphone, Laptop, FileDown, Brain } from "lucide-react"
 import { memo } from 'react'
+import SocialDock from './SocialDock'
 
 const MobileConstructionScreen = memo(() => {
   return (
@@ -63,50 +64,62 @@ const MobileConstructionScreen = memo(() => {
           </div>
         </div>
 
-        {/* Social Links */}
-        <div className="space-y-4">
-          <p className="text-sm text-red-500 font-wix font-medium">
-            Follow me on:
-          </p>
-          
-          <div className="flex space-x-8 items-center justify-center">
-            <a 
-              href="https://instagram.com/pizzat25_" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex flex-col items-center space-y-2 hover:text-red-400 transition-colors group"
-            >
-              <Instagram className="w-8 h-8" />
-              <span className="text-xs font-wix">Instagram</span>
-            </a>
-            
-            <a 
-              href="https://github.com/prakharp18" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex flex-col items-center space-y-2 hover:text-red-400 transition-colors group"
-            >
-              <Github className="w-8 h-8" />
-              <span className="text-xs font-wix">GitHub</span>
-            </a>
-            
-            <a 
-              href="https://linkedin.com/in/pporwal25/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex flex-col items-center space-y-2 hover:text-red-400 transition-colors group"
-            >
-              <Linkedin className="w-8 h-8" />
-              <span className="text-xs font-wix">LinkedIn</span>
-            </a>
-          </div>
-        </div>
+        {/* Cool Social Dock */}
+        <div className="flex justify-center">
+          <div className="bg-black/90 backdrop-blur-md border border-red-900/30 rounded-xl px-4 py-3 shadow-2xl">
+            <div className="flex items-center space-x-4">
+              
+              <a 
+                href="https://instagram.com/pizzat25_" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="group relative p-1.5 rounded-lg hover:bg-red-900/20 transition-all duration-200 hover:scale-110"
+                title="Instagram"
+              >
+                <Instagram className="w-5 h-5 text-red-600 group-hover:text-red-400 transition-colors" />
+              </a>
 
-        {/* Contact Info */}
-        <div className="pt-8 border-t border-red-900/30">
-          <p className="text-xs text-red-400/70 font-wix">
-            pporwal2019@gmail.com
-          </p>
+              <a 
+                href="https://github.com/prakharp18" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="group relative p-1.5 rounded-lg hover:bg-red-900/20 transition-all duration-200 hover:scale-110"
+                title="GitHub"
+              >
+                <Github className="w-5 h-5 text-red-600 group-hover:text-red-400 transition-colors" />
+              </a>
+
+              <a 
+                href="https://linkedin.com/in/pporwal25/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="group relative p-1.5 rounded-lg hover:bg-red-900/20 transition-all duration-200 hover:scale-110"
+                title="LinkedIn"
+              >
+                <Linkedin className="w-5 h-5 text-red-600 group-hover:text-red-400 transition-colors" />
+              </a>
+
+              <a 
+                href="https://leetcode.com/prakharp25/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="group relative p-1.5 rounded-lg hover:bg-red-900/20 transition-all duration-200 hover:scale-110"
+                title="LeetCode"
+              >
+                <Brain className="w-5 h-5 text-red-600 group-hover:text-red-400 transition-colors" />
+              </a>
+
+              <a 
+                href="/Prakhar_Resume (2).pdf" 
+                download 
+                className="group relative p-1.5 rounded-lg hover:bg-red-900/20 transition-all duration-200 hover:scale-110"
+                title="Resume"
+              >
+                <FileDown className="w-5 h-5 text-red-600 group-hover:text-red-400 transition-colors" />
+              </a>
+
+            </div>
+          </div>
         </div>
 
       </div>
