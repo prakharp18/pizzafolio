@@ -55,32 +55,32 @@ const LockedIn = memo(() => {
     <div className="min-h-screen bg-black text-red-600">
       <HomeHeader />
       
-      <div className="container mx-auto px-8 py-16">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 lg:py-16">
         
         
-        <div className="flex flex-col items-center mb-8">
-          <div className="flex justify-between items-center w-full max-w-4xl">
-            <h1 className="text-6xl font-bold font-martian text-red-600">LockedIn</h1>
+        <div className="flex flex-col items-center mb-6 md:mb-8">
+          <div className="flex flex-col sm:flex-row justify-between items-center w-full max-w-4xl space-y-4 sm:space-y-0">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-martian text-red-600">LockedIn</h1>
             <a 
               href="http://lockedln.netlify.app/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="flex items-center space-x-2 bg-red-900 hover:bg-red-800 px-6 py-3 rounded-lg transition-colors group"
+              className="flex items-center space-x-2 bg-red-900 hover:bg-red-800 px-4 sm:px-6 py-2 sm:py-3 rounded-lg transition-colors group"
             >
-              <ExternalLink className="w-5 h-5 text-red-400 group-hover:text-red-300" />
-              <span className="text-red-400 group-hover:text-red-300 font-wix font-medium">View Live</span>
+              <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 text-red-400 group-hover:text-red-300" />
+              <span className="text-red-400 group-hover:text-red-300 font-wix font-medium text-sm sm:text-base">View Live</span>
             </a>
           </div>
         </div>
 
       
-        <div className="mb-16 text-center">
-          <p className="text-xl text-red-400 font-wix leading-relaxed max-w-4xl mx-auto">
+        <div className="mb-12 md:mb-16 text-center">
+          <p className="text-base sm:text-lg md:text-xl text-red-400 font-wix leading-relaxed max-w-4xl mx-auto px-4">
             LockedIn is a free, lightweight focus timer app designed for distraction-free deep work, built for desktop browsers.
           </p>
         </div>
 
-        <div className="mb-16">
+        <div className="mb-12 md:mb-16">
           <img 
             src="/LockIn.png" 
             alt="LockedIn Project Screenshot" 
@@ -96,9 +96,9 @@ const LockedIn = memo(() => {
           />
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-6 md:space-y-8">
           
-          <div className="grid grid-cols-3 gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-16">
             {images.slice(0, 3).map((image, index) => {
               const imageId = index.toString()
               const isLoaded = loadedImages.has(imageId)
@@ -116,7 +116,7 @@ const LockedIn = memo(() => {
                     loading="lazy"
                     decoding="async"
                     ref={(el) => setImageRef(el, imageId)}
-                    className={`w-full h-48 object-contain rounded-xl transition-opacity duration-500 ${
+                    className={`w-full h-32 sm:h-40 md:h-48 object-contain rounded-xl transition-opacity duration-500 ${
                       isLoaded ? 'opacity-100' : 'opacity-0'
                     }`}
                     style={{ userSelect: 'none' }}
@@ -131,7 +131,7 @@ const LockedIn = memo(() => {
             })}
           </div>
 
-          <div className="grid grid-cols-3 gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-16">
             {images.slice(3, 6).map((image, index) => {
               const imageId = (index + 3).toString()
               const isLoaded = loadedImages.has(imageId)
@@ -149,7 +149,7 @@ const LockedIn = memo(() => {
                     loading="lazy"
                     decoding="async"
                     ref={(el) => setImageRef(el, imageId)}
-                    className={`w-full h-48 object-contain rounded-xl transition-opacity duration-500 ${
+                    className={`w-full h-32 sm:h-40 md:h-48 object-contain rounded-xl transition-opacity duration-500 ${
                       isLoaded ? 'opacity-100' : 'opacity-0'
                     }`}
                     style={{ userSelect: 'none' }}

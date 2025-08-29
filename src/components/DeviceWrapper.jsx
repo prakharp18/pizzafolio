@@ -1,17 +1,16 @@
 import { memo } from 'react'
 import { useDeviceDetection } from '../hooks/useDeviceDetection'
-import MobileConstructionScreen from './MobileConstructionScreen'
 
 const DeviceWrapper = memo(({ children }) => {
-  const { isMobileOrTablet } = useDeviceDetection()
+  const { screenSize } = useDeviceDetection()
 
-  // Show mobile construction screen for mobile and tablet devices
-  if (isMobileOrTablet) {
-    return <MobileConstructionScreen />
-  }
-
-  // Show normal content for desktop
-  return children
+  // Now we show responsive content for all devices
+  // Remove the construction screen fallback
+  return (
+    <div className={`device-wrapper ${screenSize}`} data-screen-size={screenSize}>
+      {children}
+    </div>
+  )
 })
 
 DeviceWrapper.displayName = 'DeviceWrapper'

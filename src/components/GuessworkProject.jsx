@@ -56,19 +56,19 @@ export default function GuessworkProject() {
     <div className="min-h-screen bg-black text-red-600">
       <HomeHeader />
       
-      <div className="container mx-auto px-8 py-16">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 lg:py-16">
         
         {/* Heading */}
         <div className="flex flex-col items-center mb-8">
           <div className="w-full max-w-4xl">
-            <h1 className="text-6xl font-bold font-martian text-red-600 text-center">Guesswork Never Looked This Right</h1>
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold font-martian text-red-600 text-center">Guesswork Never Looked This Right</h1>
           </div>
         </div>
 
         
         <div className="flex flex-col items-center mb-16">
           <div className="w-full max-w-4xl">
-            <p className="text-xl text-red-400 font-wix leading-relaxed text-center">
+            <p className="text-base sm:text-lg md:text-xl text-red-400 font-wix leading-relaxed text-center px-4">
               A visual story of friendship, laughter, and shared experiences, captured through my lens.
             </p>
           </div>
@@ -77,7 +77,7 @@ export default function GuessworkProject() {
         {/* Main Project Video */}
         <div className="mb-16">
           <iframe 
-            className="w-full h-96 rounded-xl"
+            className="w-full h-48 sm:h-64 md:h-80 lg:h-96 rounded-xl"
             src="https://www.youtube.com/embed/tPssFgUk6bA?rel=0&modestbranding=1&showinfo=0&controls=1"
             title="Guesswork Never Looked This Right Demo"
             frameBorder="0"
@@ -87,8 +87,8 @@ export default function GuessworkProject() {
         </div>
 
         
-        <div className="space-y-8">
-          <div className="grid grid-cols-3 gap-16">
+        <div className="space-y-6 md:space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-16">
             {images.slice(0, 3).map((image, index) => {
               const imageId = index.toString()
               const isLoaded = loadedImages.has(imageId)
@@ -106,7 +106,7 @@ export default function GuessworkProject() {
                     loading="lazy"
                     decoding="async"
                     ref={(el) => setImageRef(el, imageId)}
-                    className={`w-full h-48 object-contain rounded-xl transition-opacity duration-500 ${
+                    className={`w-full h-32 sm:h-40 md:h-48 object-contain rounded-xl transition-opacity duration-500 ${
                       isLoaded ? 'opacity-100' : 'opacity-0'
                     }`}
                     style={{ userSelect: 'none' }}
@@ -121,7 +121,7 @@ export default function GuessworkProject() {
             })}
           </div>
 
-          <div className="grid grid-cols-3 gap-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-16">
             {images.slice(3, 6).map((image, index) => {
               const imageId = (index + 3).toString()
               const isLoaded = loadedImages.has(imageId)
@@ -139,7 +139,7 @@ export default function GuessworkProject() {
                     loading="lazy"
                     decoding="async"
                     ref={(el) => setImageRef(el, imageId)}
-                    className={`w-full h-48 object-contain rounded-xl transition-opacity duration-500 ${
+                    className={`w-full h-32 sm:h-40 md:h-48 object-contain rounded-xl transition-opacity duration-500 ${
                       isLoaded ? 'opacity-100' : 'opacity-0'
                     }`}
                     style={{ userSelect: 'none' }}

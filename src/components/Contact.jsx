@@ -47,32 +47,32 @@ export default function Contact() {
       <HomeHeader />
       
       
-      <div className="container mx-auto px-8 py-16">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 py-8 md:py-12 lg:py-16">
         
         
         <div className="text-center mb-16">
-          <h1 className="text-6xl font-bold font-martian text-red-600 mb-6">Contact</h1>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-martian text-red-600 mb-4 md:mb-6">Contact</h1>
         
         </div>
 
-        <div className="flex items-center justify-center gap-16 max-w-6xl mx-auto">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 max-w-6xl mx-auto">
           
-          <div className="flex flex-col justify-center space-y-4">
+          <div className="flex flex-col justify-center space-y-4 text-center lg:text-left">
             <div>
-              <h2 className="text-lg font-bold font-martian text-red-600 mb-6">Artist/Developer</h2>
+              <h2 className="text-base sm:text-lg font-bold font-martian text-red-600 mb-4 lg:mb-6">Artist/Developer</h2>
             </div>
 
             <div className="space-y-3">
               <div>
-                <p className="text-xs text-red-400 font-wix">pporwal2019@gmail.com</p>
+                <p className="text-xs sm:text-sm text-red-400 font-wix">pporwal2019@gmail.com</p>
               </div>
 
               <div>
-                <p className="text-xs text-red-400 font-wix">Available for remote work</p>
+                <p className="text-xs sm:text-sm text-red-400 font-wix">Available for remote work</p>
               </div>
 
               <div>
-                <p className="text-xs text-red-400 font-wix">Based in Delhi</p>
+                <p className="text-xs sm:text-sm text-red-400 font-wix">Based in Delhi</p>
               </div>
             </div>
           </div>

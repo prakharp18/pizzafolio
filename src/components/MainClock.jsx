@@ -96,16 +96,16 @@ export default function MainClock() {
   }
 
   return (
-    <div className="h-screen bg-black text-red-600 flex items-center justify-center px-4 md:px-8">
+    <div className="min-h-screen bg-black text-red-600 flex items-center justify-center px-4 md:px-8 py-8 md:py-12">
       <div className="w-full max-w-7xl">
         
         {/* Main Clock Display */}
-        <div className="text-center mb-8 md:mb-10">
-          <div className="text-7xl md:text-8xl lg:text-9xl font-bold text-red-600 mb-4 md:mb-6 font-martian tracking-wider">
+        <div className="text-center mb-4 md:mb-6 lg:mb-8">
+          <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-bold text-red-600 mb-3 md:mb-4 lg:mb-6 font-martian tracking-wider">
             {formatMainTime(currentTime)}
           </div>
           
-          <div className="flex justify-between items-center mb-2 md:mb-3 px-4 md:px-8">
+          <div className="flex justify-between items-center mb-2 md:mb-3 px-2 sm:px-4 md:px-8">
             <span className="text-xs md:text-sm text-red-400 font-wix">Current</span>
             <div className="flex bg-red-900 rounded-full p-0.5 border border-red-600">
               <button 
@@ -129,22 +129,23 @@ export default function MainClock() {
         </div>
 
         {/* Location and Quote */}
-        <div className="flex justify-between items-start mb-4 md:mb-6 px-4 md:px-8">
+        <div className="flex flex-row justify-between items-start mb-3 md:mb-4 lg:mb-6 px-2 sm:px-4 md:px-8">
           <div className="flex items-start space-x-2 md:space-x-3">
             <MapPin className="w-4 h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-red-500 mt-1 flex-shrink-0" />
             <div>
-              <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-red-500 font-wix">{getActiveLocation().city},</h2>
-              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-red-500 font-wix">{getActiveLocation().country}</h3>
+              <h2 className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-red-500 font-wix">{getActiveLocation().city},</h2>
+              <h3 className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-red-500 font-wix">{getActiveLocation().country}</h3>
             </div>
           </div>
-          <div className="text-right text-red-400 font-wix max-w-xs">
-            <p className="text-xs md:text-sm italic">"In the IDE of life, be the main class</p>
-            <p className="text-xs md:text-sm italic">just don't forget to declare your 'public static void awesome()' method."</p>
+          <div className="text-right flex-shrink-0">
+            <p className="text-xs sm:text-xs md:text-sm italic leading-relaxed text-red-400 font-wix">"In the IDE of life, be the main class</p>
+            <p className="text-xs sm:text-xs md:text-sm italic leading-relaxed text-red-400 font-wix">just don't forget to declare your </p>
+            <p className="text-xs sm:text-xs md:text-sm italic leading-relaxed text-red-400 font-wix">'public static void awesome()' method."</p>
           </div>
         </div>
 
-        {/* Timezone Cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 px-4 md:px-8">
+        {/* Timezone Cards - 2x2 Layout (2 each side) */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 px-2 sm:px-4 md:px-8">
           {timezones.map((tz, index) => {
             const timeData = getTimeOfDay(currentTime, tz.timezone)
             const isActive = tz.timezone === activeTimezone
@@ -163,7 +164,7 @@ export default function MainClock() {
                   <span className={`ml-2 text-xs ${isActive ? 'opacity-70 text-black' : 'opacity-70'}`}>{tz.utc}</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className={`text-lg md:text-2xl font-bold font-martian tracking-wide ${isActive ? 'text-black' : ''}`}>
+                  <span className={`text-base sm:text-lg md:text-xl lg:text-2xl font-bold font-martian tracking-wide ${isActive ? 'text-black' : ''}`}>
                     {formatTime(currentTime, tz.timezone)}
                   </span>
                   <div className={`flex items-center text-xs font-wix ${isActive ? 'text-black' : ''}`}>

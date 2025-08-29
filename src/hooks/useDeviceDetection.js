@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 
 export const useDeviceDetection = () => {
+  const [screenSize, setScreenSize] = useState('desktop')
   const [isMobile, setIsMobile] = useState(false)
   const [isTablet, setIsTablet] = useState(false)
   const [isDesktop, setIsDesktop] = useState(true)
@@ -10,16 +11,30 @@ export const useDeviceDetection = () => {
       const width = window.innerWidth
       const userAgent = navigator.userAgent.toLowerCase()
       
-      // Check for mobile devices
+      // Enhanced breakpoint detection
+      let newScreenSize
+      if (width < 640) {
+        newScreenSize = 'mobile'
+      } else if (width < 1024) {
+        newScreenSize = 'tablet'
+      } else {
+        newScreenSize = 'desktop'
+      }
+      
+      // User agent fallback for better mobile detection
       const mobileRegex = /android|webos|iphone|ipod|blackberry|iemobile|opera mini/i
       const tabletRegex = /ipad|android(?!.*mobile)|tablet/i
       
-      const isMobileDevice = width <= 768 || mobileRegex.test(userAgent)
-      const isTabletDevice = (width > 768 && width <= 1024) || tabletRegex.test(userAgent)
+      if (mobileRegex.test(userAgent) && newScreenSize !== 'desktop') {
+        newScreenSize = 'mobile'
+      } else if (tabletRegex.test(userAgent) && newScreenSize === 'desktop') {
+        newScreenSize = 'tablet'
+      }
       
-      setIsMobile(isMobileDevice && !isTabletDevice)
-      setIsTablet(isTabletDevice)
-      setIsDesktop(!isMobileDevice && !isTabletDevice)
+      setScreenSize(newScreenSize)
+      setIsMobile(newScreenSize === 'mobile')
+      setIsTablet(newScreenSize === 'tablet')
+      setIsDesktop(newScreenSize === 'desktop')
     }
 
     // Check on mount
@@ -32,6 +47,7 @@ export const useDeviceDetection = () => {
   }, [])
 
   return {
+    screenSize,
     isMobile,
     isTablet,
     isDesktop,
