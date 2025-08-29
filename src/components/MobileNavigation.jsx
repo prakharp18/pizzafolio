@@ -8,7 +8,7 @@ const MobileNavigation = memo(() => {
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
-    setShowProjects(false) // Reset projects submenu when closing
+    setShowProjects(false) // Reset projects
   }
 
   const closeMenu = () => {

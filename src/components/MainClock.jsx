@@ -1,6 +1,23 @@
 import { useState, useEffect } from 'react'
 import { Sun, Moon, MapPin } from 'lucide-react'
 
+export         {/* Cat Gif Section - because why not!  */}
+        <div className="flex justify-center mb-6 md:mb-8 bg-black">
+          <div className="relative bg-black">
+            <img 
+              src="/cat.gif" 
+              alt="Coding Cat" 
+              className="w-24 h-24 md:w-32 md:h-32 lg:w-40 lg:h-40 rounded-full object-cover border-2 border-red-600/30 hover:border-red-600 transition-all duration-300 hover:scale-105"
+              onError={(e) => {
+                console.log('Cat gif failed to load')
+                e.target.style.display = 'none'
+              }}
+              onLoad={() => console.log('Cat gif loaded successfully!')}
+            />
+            <div className="absolute inset-0 rounded-full bg-black/10 hover:bg-black/20 transition-all duration-300"></div>
+          </div>
+        </div>
+
 export default function MainClock() {
   const [currentTime, setCurrentTime] = useState(new Date())
   const [is24Hour, setIs24Hour] = useState(true)
@@ -98,6 +115,27 @@ export default function MainClock() {
   return (
     <div className="min-h-screen bg-black text-red-600 flex items-center justify-center px-4 md:px-8 py-8 md:py-12">
       <div className="w-full max-w-7xl">
+        
+         {/* Cat Gif Section - Mobile Only */}
+        <div className="flex justify-center mb-6 md:mb-8 sm:hidden">
+          <div className="relative bg-black">
+           <img 
+            src="/cat.gif" 
+            alt="Cute black kitten sleeping"
+            className="w-32 h-24 object-contain"
+            style={{
+              backgroundColor: 'black',
+              mixBlendMode: 'screen',
+              filter: 'brightness(1.1) contrast(1.2)',
+              userSelect: 'none'
+            }}
+              onLoad={() => console.log('Cat gif loaded successfully!')}
+              onContextMenu={(e) => e.preventDefault()}
+              onDragStart={(e) => e.preventDefault()}
+            />
+            <div className="absolute inset-0 rounded-full bg-black/10 hover:bg-black/20 transition-all duration-300 pointer-events-none"></div>
+          </div>
+        </div>
         
         {/* Main Clock Display */}
         <div className="text-center mb-4 md:mb-6 lg:mb-8">
