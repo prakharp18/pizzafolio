@@ -12,12 +12,12 @@ const Binart = memo(() => {
   const imageRefs = useRef(new Map())
 
   const images = useMemo(() => [
-    { src: '/binart-feature-1.png', alt: 'Binart Feature 1' },
-    { src: '/binart-feature-2.png', alt: 'Binart Feature 2' },
-    { src: '/binart-feature-3.png', alt: 'Binart Feature 3' },
-    { src: '/binart-feature-4.png', alt: 'Binart Feature 4' },
-    { src: '/binart-feature-5.png', alt: 'Binart Feature 5' },
-    { src: '/binart-feature-6.png', alt: 'Binart Feature 6' }
+    { src: '/binart-1.png', alt: 'Binart Feature 1' },
+    { src: '/binart-2.png', alt: 'Binart Feature 2' },
+    { src: '/binart-3.png', alt: 'Binart Feature 3' },
+    { src: '/binart-4.png', alt: 'Binart Feature 4' },
+    { src: '/binart-5.png', alt: 'Binart Feature 5' },
+    { src: '/binart-6.png', alt: 'Binart Feature 6' }
   ], [])
 
   // Preload critical images on mount
@@ -63,7 +63,7 @@ const Binart = memo(() => {
           <div className="flex flex-col sm:flex-row justify-between items-center w-full max-w-4xl space-y-4 sm:space-y-0">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-martian text-red-600">Binart</h1>
             <a 
-              href="#" 
+              href="https://binart.vercel.app/" 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex items-center space-x-2 bg-red-900 hover:bg-red-800 px-4 sm:px-6 py-2 sm:py-3 rounded-lg transition-colors group"
@@ -77,13 +77,13 @@ const Binart = memo(() => {
       
         <div className="mb-12 md:mb-16 text-center">
           <p className="text-base sm:text-lg md:text-xl text-red-400 font-wix leading-relaxed max-w-4xl mx-auto px-4">
-            Binart is a modern binary visualization tool designed for developers and data scientists.
+            Binart transforms your browser into a powerful digital canvas with a unique focus on Binary Export (RLE) and complete privacy.
           </p>
         </div>
 
         <div className="mb-12 md:mb-16">
           <img 
-            src="/Binart.png" 
+            src="/binartmain.png" 
             alt="Binart Project Screenshot" 
             loading="lazy"
             decoding="async"

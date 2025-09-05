@@ -26,7 +26,7 @@ const MobileNavigation = memo(() => {
     { name: 'Clippit', path: '/projects/clippit' },
     { name: 'Guesswork Never Looked This Right', path: '/projects/GuessworkNeverLookedThisRight' },
     { name: 'Aperture Log', path: '/projects/aperture-log' },
-    { name: 'Scores', path: '/projects/scores' }
+    { name: 'Binart', path: '/projects/binart' }
   ]
 
   return (

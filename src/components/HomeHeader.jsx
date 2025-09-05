@@ -41,7 +41,7 @@ export default function HomeHeader() {
                   <Link to="/projects/clippit" className="block px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-900/20 transition-colors">Clippit</Link>
                   <Link to="/projects/GuessworkNeverLookedThisRight" className="block px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-900/20 transition-colors">Guesswork</Link>
                   <Link to="/projects/aperture-log" className="block px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-900/20 transition-colors">Aperture Log</Link>
-                  <Link to="/projects/scores" className="block px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-900/20 transition-colors">Scores</Link>
+                  <Link to="/projects/binart" className="block px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-900/20 transition-colors">Binart</Link>
                 </div>
               </div>
             </div>
@@ -109,10 +109,10 @@ export default function HomeHeader() {
                     Aperture Log
                   </Link>
                   <Link 
-                    to="/projects/scores" 
+                    to="/projects/binart" 
                     className="block px-4 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-900/20 transition-colors"
                   >
-                    Scores
+                    Binart
                   </Link>
                 </div>
               </div>
